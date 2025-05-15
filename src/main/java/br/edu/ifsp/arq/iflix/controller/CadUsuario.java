@@ -16,6 +16,8 @@ import br.edu.ifsp.arq.iflix.model.Usuario;
 @WebServlet("/cadUsuario")
 public class CadUsuario extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void init() throws ServletException {
 		if (getServletContext().getAttribute("cadastro") == null) {

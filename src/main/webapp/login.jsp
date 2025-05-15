@@ -30,20 +30,20 @@
                   <input type="password" id="senha" name="senha" class="form-control form-control-lg" required />
                 </div>
 
- 				<div class="row mb-4">
-				  <div class="col d-flex justify-content-center">
-				    <div class="form-check">
-				      <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-				      <label class="form-check-label" for="form2Example31">
-				        <span class="hover-success">Lembre-me</span>
-				      </label>
-				    </div>
-				  </div>
+<!--  				<div class="row mb-4"> -->
+<!-- 				  <div class="col d-flex justify-content-center"> -->
+<!-- 				    <div class="form-check"> -->
+<!-- 				      <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked /> -->
+<!-- 				      <label class="form-check-label" for="form2Example31"> -->
+<!-- 				        <span class="hover-success">Lembre-me</span> -->
+<!-- 				      </label> -->
+<!-- 				    </div> -->
+<!-- 				  </div> -->
 				
-				  <div class="col">
-				    <a href="#!" class="text-white-50">Esqueceu a senha?</a>
-				  </div>
-				</div>
+<!-- 				  <div class="col"> -->
+<!-- 				    <a href="#!" class="text-white-50">Esqueceu a senha?</a> -->
+<!-- 				  </div> -->
+<!-- 				</div> -->
 
 			   <button class="btn btn-outline-success btn-lg px-5" type="submit">Entrar</button>
               

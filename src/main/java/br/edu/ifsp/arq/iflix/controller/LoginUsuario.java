@@ -15,7 +15,9 @@ import br.edu.ifsp.arq.iflix.model.Usuario;
 @WebServlet("/login")
 public class LoginUsuario extends HttpServlet {
 
-    @Override
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

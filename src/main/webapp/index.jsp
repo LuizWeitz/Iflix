@@ -4,6 +4,8 @@
 
 <c:import url="header.jsp" />
 
+
+
 <!-- Estilos -->
 <style>
 .hero-section {

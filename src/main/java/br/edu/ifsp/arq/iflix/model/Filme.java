@@ -111,5 +111,10 @@ public class Filme implements Serializable{
 	public void setCapa(String capa) {
 		this.capa = capa;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 
 }

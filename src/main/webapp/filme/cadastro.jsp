@@ -3,9 +3,10 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:import url="header.jsp"></c:import>
+<c:import url="../header.jsp"></c:import>
 
 <main>
+
 	<section class="vh-100 gradient-custom">
 		<div class="container py-5 h-100">
 			<div
@@ -16,11 +17,7 @@
 						<div class="card-body p-4 text-center">
 
 							<div class="mb-md-2 mt-md-2 pb-1">
-
-								<div class="mb-4">
-									<img src="assets/iflix.svg" alt="Logo" height="70">
-								</div>
-
+							
 								<form action="cadUsuario" method="post">
 									<div class="form-outline form-white mb-4 text-none">
 										<label class="form-label text-start w-100 fs-5" for="nome">Nome</label>
@@ -99,8 +96,10 @@
 			</div>
 		</div>
 	</section>
-</main>
 
+
+
+</main>
 
 
 

@@ -1,5 +1,10 @@
+<%@page import="br.edu.ifsp.arq.iflix.model.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    Usuario user = (Usuario) request.getAttribute("usuario");
+%>
+
 
 <c:import url="header.jsp"/>
 
@@ -13,17 +18,15 @@
             <div class="card-body text-center">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" 
                    alt="avatar"
-                   class="rounded-circle img-fluid mb-3"
+                   class="rounded-circle img-fluid mb-5"
                    style="width: 150px;">
-              <h5 class="my-3 mb-5">John Smith</h5>
-      
               <div class="text-start px-4">
                 <div class="row mb-3">
                   <div class="col-sm-4">
                     <p class="mb-0">Nome</p>
                   </div>
                   <div class="col-sm-8">
-                    <p class="text-light mb-0">nome</p>
+                    <input class="text-light mb-0" value="<%= user.getNome() %>">
                   </div>
                 </div> 
                 <hr class="bg-dark" />
@@ -32,7 +35,7 @@
                     <p class="mb-0">Data de Nascimento</p>
                   </div>
                   <div class="col-sm-8">
-                    <p class="text-light mb-0">nome</p>
+                      <input class="text-light mb-0" value="<%= user.getDataNasc()%>">
                   </div>
                 </div>
                 <hr class="bg-dark" />
@@ -41,7 +44,7 @@
                     <p class="mb-0">Email</p>
                   </div>
                   <div class="col-sm-8">
-                    <p class="text-light mb-0">example@example.com</p>
+                    <input class="text-light mb-0" value="<%= user.getEmail()%>">
                   </div>
                 </div>
                 <hr class="bg-dark" />
@@ -50,7 +53,7 @@
                     <p class="mb-0">Senha</p>
                   </div>
                   <div class="col-sm-8">
-                    <p class="text-light mb-0">(097) 234-5678</p>
+                   <input class="text-light mb-0">
                   </div>
                 </div>
                   <div class="d-flex justify-content-center mb-4">

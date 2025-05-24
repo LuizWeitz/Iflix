@@ -15,10 +15,10 @@ public class Filme implements Serializable{
 	private String formato;
 	private float duracao;
 	private String linkTrailer;
-	private String capa;
+	private String imgCapa;
 	
 	public Filme(int id, String titulo, String diretor, String anoLancamento, String sinopse, String idioma,
-			String formato, float duracao, String linkTrailer, String capa) {
+			String formato, float duracao, String linkTrailer, String imgCapa) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -29,7 +29,7 @@ public class Filme implements Serializable{
 		this.formato = formato;
 		this.duracao = duracao;
 		this.linkTrailer = linkTrailer;
-		this.capa = capa;
+		this.imgCapa = imgCapa;
 	}
 
 	public int getId() {
@@ -104,12 +104,12 @@ public class Filme implements Serializable{
 		this.linkTrailer = linkTrailer;
 	}
 
-	public String getCapa() {
-		return capa;
+	public String getImgCapa() {
+		return imgCapa;
 	}
 
-	public void setCapa(String capa) {
-		this.capa = capa;
+	public void setImgCapa(String imgCapa) {
+		this.imgCapa = imgCapa;
 	}
 	
 	@Override

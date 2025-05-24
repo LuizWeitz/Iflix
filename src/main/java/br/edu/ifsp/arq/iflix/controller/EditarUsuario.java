@@ -51,8 +51,19 @@ public class EditarUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	    int id = Integer.parseInt(request.getParameter("id"));
+	    String nome = request.getParameter("nome");
+	    String dataNasc = request.getParameter("dataNasc");
+	    String email = request.getParameter("email");
+	    String senha = request.getParameter("senha");
+
+	    Usuario usuario = new Usuario(id, nome, dataNasc, email, senha, senha);
+
+	    usuarioDAO.atualizar(usuario); 
+
+	    request.setAttribute("usuario", usuario);
+	    request.getRequestDispatcher("usuario.jsp").forward(request, response);
 	}
+
 
 }

@@ -39,7 +39,7 @@
                                 </form>
 
                                 <p class="mb-0 mt-4">
-                                    Não tem uma conta? <a href="cadastro.jsp" class="text-white-50">Cadastre-se</a>
+                                    Não tem uma conta? <a href="cadastramentoUsuario.jsp" class="text-white-50">Cadastre-se</a>
                                 </p>
 
                             </div>

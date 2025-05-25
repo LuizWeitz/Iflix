@@ -10,7 +10,7 @@
 <style>
 .hero-section {
 	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url('https://github.com/ionutcora-webdevelopment/netflix-clone/blob/master/img/header-img.jpg?raw=true')
+		url('assets/conjuntoFilmes.jpg')
 		no-repeat center center/cover;
 	color: white;
 	min-height: 100vh;

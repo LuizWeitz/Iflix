@@ -76,7 +76,8 @@
                 <button class="btn btn-outline-success btn-lg px-5 mt-3" type="submit">Cadastrar</button>
 
               </form>
-
+              
+         
               <p class="mt-4 mb-0">
                 Já tem uma conta? <a href="login.jsp" class="text-white-50">Entrar</a>
               </p>

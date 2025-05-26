@@ -42,8 +42,9 @@ public class EditarUsuario extends HttpServlet {
 		 
 		 request.setAttribute("usuario", usuario);
 		 
-		 RequestDispatcher dispatcher = request.getRequestDispatcher("usuario.jsp");
-	      dispatcher.forward(request, response);
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("gerenciamentoUsuario.jsp");
+		 
+	     dispatcher.forward(request, response);
 		
 	}
 
@@ -62,8 +63,21 @@ public class EditarUsuario extends HttpServlet {
 	    usuarioDAO.atualizar(usuario); 
 
 	    request.setAttribute("usuario", usuario);
-	    request.getRequestDispatcher("usuario.jsp").forward(request, response);
+	    request.getRequestDispatcher("gerenciamentoUsuario.jsp").forward(request, response);
 	}
+	
+	
+//} else {
+//    request.setAttribute("mensagemErro", "Erro ao atualizar os dados.");
+//    request.getRequestDispatcher("erro.jsp").forward(request, response);
+//}
+//
+//} else {
+//request.setAttribute("mensagemErro", "Usuário não encontrado.");
+//request.getRequestDispatcher("erro.jsp").forward(request, response);
+//}
+	
+	
 
 
 }

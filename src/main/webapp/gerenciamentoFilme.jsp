@@ -1,7 +1,24 @@
+
+<%@page import="br.edu.ifsp.arq.iflix.model.Usuario"%>
 <%@page import="br.edu.ifsp.arq.iflix.model.Filme"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<%
+    Usuario usuario = null;
+
+    if (session != null) {
+        usuario = (Usuario) session.getAttribute("usuario");
+    }
+
+    if (usuario == null) {
+        response.sendRedirect("avisoNaoLogado.jsp");
+        return;
+    }
+%>
+
 
 <c:import url="header.jsp" />
 

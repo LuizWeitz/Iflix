@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import br.edu.ifsp.arq.iflix.model.Usuario;
 
-@WebServlet("/deleteUsuario")
+@WebServlet("/deletarUsuario")
 public class DeleteUsuarioServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

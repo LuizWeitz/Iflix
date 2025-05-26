@@ -15,9 +15,11 @@ public class UsuarioDAO {
     }
     
     public static UsuarioDAO getInstance() {
-        if (instance == null) {
+        
+    	if (instance == null) {
             instance = new UsuarioDAO();
         }
+        
         return instance;
     }
     

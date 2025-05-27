@@ -1,15 +1,12 @@
 <%@page import="br.edu.ifsp.arq.iflix.model.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
     Usuario usuario = null;
-
     if (session != null) {
         usuario = (Usuario) session.getAttribute("usuario");
     }
-
     if (usuario == null) {
         response.sendRedirect("avisoNaoLogado.jsp");
         return;
@@ -17,7 +14,6 @@
 %>
 
 <c:import url="header.jsp" />
-
 
 <style>
 .navbar-top {
@@ -49,9 +45,14 @@
 .carrossel {
 	display: flex;
 	gap: 20px;
-	overflow-x: hidden;
+	overflow-x: auto;
 	scroll-behavior: smooth;
 	padding: 10px 0;
+	scrollbar-width: none;
+}
+
+.carrossel::-webkit-scrollbar {
+	display: none;
 }
 
 .filme-card {
@@ -67,6 +68,7 @@
 	object-fit: cover;
 	border-radius: 8px;
 	background-color: #666;
+	box-shadow: 0 4px 8px rgba(100, 100, 100, 0.5);
 	transition: transform 0.3s ease;
 }
 
@@ -78,40 +80,37 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0.4);
 	border: none;
 	color: white;
 	width: 40px;
 	height: 60px;
-	cursor: pointer;
+	cursor: default;
 	z-index: 10;
 	border-radius: 5px;
 	font-size: 2rem;
+	user-select: none;
 }
 
 .btn-nav:hover {
-	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 .btn-prev {
-	left: -10px;
+	left: 0;
 }
 
 .btn-next {
-	right: -10px;
+	right: 0;
 }
 </style>
 
-
-
-
 <main>
-
 	<% 
-    String[] secoes = {"Ação", "Comédia", "Drama", "Terror"};
-    int contador = 0;
-    for (int inicio = 1; inicio <= 37; inicio += 1) { 
-%>
+	    String[] secoes = {"Ação", "Comédia", "Drama", "Terror"};
+	    int contador = 0;
+	    for (int inicio = 1; inicio <= 37; inicio += 12) { 
+	%>
 	<div class="bg-dark text-white py-5">
 		<div class="container">
 			<h2 class="fw-bold mb-4 text-center"><%= secoes[contador++] %></h2>
@@ -119,11 +118,11 @@
 				<button class="btn-nav btn-prev">&lt;</button>
 				<div class="carrossel">
 					<% 
-                    for (int i = inicio; i < inicio + 12; i++) { 
-                %>
+	                    for (int i = inicio; i < inicio + 12; i++) { 
+	                %>
 					<div class="filme-card">
-						<img src="assets/<%=i%>.png"
-							onerror="this.src='assets/poster-vazio.png';">
+						<img src="assets/<%=i%>.png" 
+							onerror="this.onerror=null; this.src='assets/poster-vazio.png';">
 					</div>
 					<% } %>
 				</div>
@@ -132,10 +131,6 @@
 		</div>
 	</div>
 	<% } %>
-
 </main>
 
 <c:import url="footer.jsp" />
-
-
-

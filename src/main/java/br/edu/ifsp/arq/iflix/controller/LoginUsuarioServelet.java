@@ -13,7 +13,7 @@ import br.edu.ifsp.arq.iflix.dao.UsuarioDAO;
 import br.edu.ifsp.arq.iflix.model.Usuario;
 
 @WebServlet("/login")
-public class LoginUsuario extends HttpServlet {
+public class LoginUsuarioServelet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,7 +24,7 @@ public class LoginUsuario extends HttpServlet {
 	   /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginUsuario() {
+    public LoginUsuarioServelet() {
         super();
         usuarioDAO = UsuarioDAO.getInstance();
     }

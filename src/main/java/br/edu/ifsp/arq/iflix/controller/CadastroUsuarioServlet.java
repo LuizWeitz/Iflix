@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -36,21 +35,14 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String msg = "";
+		 request.setCharacterEncoding("UTF-8");
 
 		List<Usuario> usuarios = (List<Usuario>) usuarioDAO.buscarTodos();
 
 		for (Usuario usuario : usuarios) {
 			if (usuario.getEmail().equals(request.getParameter("email"))) {
-			
-				msg = "Email Já Cadastrado!";
 
-				 msg = "Email Já Cadastrado!";
-				request.setAttribute("mensagem", msg);
-				request.setAttribute("classe", "alert alert-success");
-				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-
-	
+				response.sendRedirect("usuarioEmailJaExiste.jsp");
 				return;
 			}
 		}
@@ -83,29 +75,17 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 		Usuario usuario = new Usuario(id, nome, dataNasc, email, senha, base64String);
 
-
-
 		if (usuarioDAO.adicionar(usuario)) {
 
 			HttpSession session = request.getSession();
 
 			session.setAttribute("usuario", usuario);
 
-			msg = "Bem-Vindo ao IFLIX!";
-
-			request.setAttribute("mensagem", msg);
-			request.setAttribute("classe", "alert alert-success");
-
 			response.sendRedirect("home.jsp");
 
 		} else {
 
-			msg = "Erro ao Adicionar Usuario!";
-
-			request.setAttribute("mensagem", msg);
-			request.setAttribute("classe", "alert alert-success");
-
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("erroProcessarSolicitacao.jsp");
 		}
 
 	}

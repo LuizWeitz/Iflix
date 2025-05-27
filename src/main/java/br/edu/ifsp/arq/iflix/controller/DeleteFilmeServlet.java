@@ -5,44 +5,40 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import java.io.IOException;
 
-import br.edu.ifsp.arq.iflix.dao.UsuarioDAO;
-import br.edu.ifsp.arq.iflix.model.Usuario;
+import br.edu.ifsp.arq.iflix.dao.FilmeDAO;
+import br.edu.ifsp.arq.iflix.model.Filme;
 
-@WebServlet("/deleteUsuario")
-public class DeleteUsuarioServlet extends HttpServlet {
+
+@WebServlet("/deleteFilme")
+public class DeleteFilmeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
 	
-	private UsuarioDAO usuarioDAO;
-	public Usuario usuario;
+	private FilmeDAO filmeDAO;
+	public Filme filme;
 
 	 /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUsuarioServlet() {
+    public DeleteFilmeServlet() {
         super();
-        usuarioDAO = UsuarioDAO.getInstance();
+        filmeDAO = FilmeDAO.getInstance();
     }
 
-	
-	
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-        if (usuarioDAO.deletarPorID(id)) {
+        if (filmeDAO.deletarPorID(id)) {
         	
-        	 HttpSession session = request.getSession();
-    		 
-    		 session.invalidate();
-     
-             response.sendRedirect("index.jsp");
+             response.sendRedirect("home.jsp");
              
         } else {
         	

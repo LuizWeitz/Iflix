@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<footer class="py-3 my-4">
+<footer class="py-5 my-4">
 
 	<div class="mb-4 text-center">
 		<img src="assets/iflix.svg" alt="Logo">

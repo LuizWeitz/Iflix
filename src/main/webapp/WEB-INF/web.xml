@@ -16,6 +16,24 @@
   	<description></description>
   	<servlet-class>br.edu.ifsp.arq.iflix.controller.LogoutServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SairServlet</servlet-name>
+  	<display-name>SairServlet</display-name>
+  	<description></description>
+  	<servlet-class>br.edu.ifsp.arq.iflix.controller.SairServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HomeServlet</servlet-name>
+  	<display-name>HomeServlet</display-name>
+  	<description></description>
+  	<servlet-class>br.edu.ifsp.arq.iflix.controller.HomeServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditarFilmeServlet</servlet-name>
+  	<display-name>EditarFilmeServlet</display-name>
+  	<description></description>
+  	<servlet-class>br.edu.ifsp.arq.iflix.controller.EditarFilmeServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EditarUsuario</servlet-name>
   	<url-pattern>/EditarUsuario</url-pattern>
@@ -23,5 +41,17 @@
   <servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SairServlet</servlet-name>
+  	<url-pattern>/SairServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HomeServlet</servlet-name>
+  	<url-pattern>/HomeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditarFilmeServlet</servlet-name>
+  	<url-pattern>/EditarFilmeServlet</url-pattern>
   </servlet-mapping>
 </web-app>

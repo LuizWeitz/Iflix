@@ -5,19 +5,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.edu.ifsp.arq.iflix.dao.FilmeDAO;
 import br.edu.ifsp.arq.iflix.model.Filme;
 
 @WebServlet("/cadastroFilme")
+@MultipartConfig
 public class CadastroFilmeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -30,13 +31,13 @@ public class CadastroFilmeServlet extends HttpServlet {
 		filmeDAO = FilmeDAO.getInstance();
 	}
 
-	
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+	    request.setCharacterEncoding("UTF-8");
 
-		Part filePart = request.getPart("imgCapa");
+		Part filePart = request.getPart("capaFile");
 
 		InputStream fileContent = filePart.getInputStream();
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -57,27 +58,15 @@ public class CadastroFilmeServlet extends HttpServlet {
 				? filmeDAO.buscarTodos().get(filmeDAO.buscarTodos().size() - 1).getId() + 1
 				: 1;
 
-		Filme filme = new Filme(id, request.getParameter("titulo"), request.getParameter("diretor"),
+		Filme filme = new Filme(id, request.getParameter("titulo"), request.getParameter("genero"), request.getParameter("diretor"),
 				request.getParameter("anoLancamento"), request.getParameter("sinopse"), request.getParameter("idioma"),
-				request.getParameter("formato"), Float.parseFloat(request.getParameter("duracao")),
+				request.getParameter("formato"), request.getParameter("duracao"),
 				request.getParameter("linkTrailer"), base64String);
 
-		String msg = "";
-
 		if (filmeDAO.adicionar(filme)) {
-			msg = "Filme Adicionado com Sucesso!";
-
-			request.setAttribute("mensagem", msg);
-			request.setAttribute("classe", "alert alert-success");
-
-			getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+			response.sendRedirect("home.jsp");
 		} else {
-			msg = "Erro ao Adicionar Filme!";
-
-			request.setAttribute("mensagem", msg);
-			request.setAttribute("classe", "alert alert-danger");
-
-			getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+			response.sendRedirect("erroProcessarSolicitacao.jsp");
 		}
 
 	}

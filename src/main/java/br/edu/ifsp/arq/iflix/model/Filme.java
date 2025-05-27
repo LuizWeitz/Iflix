@@ -8,20 +8,22 @@ public class Filme implements Serializable{
 	
 	private int id;
 	private String titulo;
+	private String genero;
 	private String diretor;
 	private String anoLancamento;
 	private String sinopse;
 	private String idioma;
 	private String formato;
-	private float duracao;
+	private String duracao;
 	private String linkTrailer;
 	private String imgCapa;
 	
-	public Filme(int id, String titulo, String diretor, String anoLancamento, String sinopse, String idioma,
-			String formato, float duracao, String linkTrailer, String imgCapa) {
+	public Filme(int id, String titulo, String genero, String diretor, String anoLancamento, String sinopse, String idioma,
+			String formato, String duracao, String linkTrailer, String imgCapa) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
+		this.genero = genero;
 		this.diretor = diretor;
 		this.anoLancamento = anoLancamento;
 		this.sinopse = sinopse;
@@ -46,6 +48,14 @@ public class Filme implements Serializable{
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public String getDiretor() {
@@ -88,11 +98,11 @@ public class Filme implements Serializable{
 		this.formato = formato;
 	}
 
-	public float getDuracao() {
+	public String getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(float duracao) {
+	public void setDuracao(String duracao) {
 		this.duracao = duracao;
 	}
 	
@@ -114,7 +124,20 @@ public class Filme implements Serializable{
 	
 	@Override
 	public String toString() {
-		return super.toString();
+	    return "Filme{" +
+	            "id=" + id +
+	            ", titulo='" + titulo + '\'' +
+	            ", genero='" + genero + '\'' +
+	            ", diretor='" + diretor + '\'' +
+	            ", anoLancamento='" + anoLancamento + '\'' +
+	            ", sinopse='" + sinopse + '\'' +
+	            ", idioma='" + idioma + '\'' +
+	            ", formato='" + formato + '\'' +
+	            ", duracao='" + duracao + '\'' +
+	            ", linkTrailer='" + linkTrailer + '\'' +
+	            ", imgCapa='" + imgCapa + '\'' +
+	            '}';
 	}
+
 
 }

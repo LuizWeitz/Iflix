@@ -49,41 +49,45 @@
 
 <body>
 
-
-
-	<c:if test="${not empty mensagem}">
-
-		<div class="${classe} " role="alert">${mensagem}</div>
-
-	</c:if>
-
-
 	<div class="navbar-top">
 		<a class="navbar-brand" href="home.jsp"> <img
 			src="assets/iflix.svg" alt="Logo">
 		</a>
 
 		<%
-		Usuario name = (Usuario) session.getAttribute("usuario");
-		if (name != null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if (usuario != null) {
 		%>
 		<div class="dropdown">
 			<button class="btn btn-success dropdown-toggle" type="button"
 				data-bs-toggle="dropdown" aria-expanded="false">
 				Olá,
-				<%= name.getNome() %>
+				<%=usuario.getNome()%>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="#">Novo Filme</a></li>
-				<li><a class="dropdown-item" href="#">Minha Conta</a></li>
-				<li><a class="dropdown-item" href="LogoutServlet">Sair</a></li>
+				<li><a class="dropdown-item" href="/Iflix/cadastroFilme.jsp">Novo
+						Filme</a></li>
+				<li><a class="dropdown-item"
+					href="/Iflix/editarUsuario?id=	<%=usuario.getId()%>">Minha
+						Conta</a></li>
+				<li><a class="dropdown-item" href="/Iflix/sair">Sair</a></li>
 			</ul>
 		</div>
 		<%
-		} 
+		} else {
 		%>
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button"
+				data-bs-toggle="dropdown" aria-expanded="false">OPÇÕES</button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="/Iflix/home.jsp">Home</a></li>
+				<li><a class="dropdown-item" href="/Iflix/sobre.jsp">Sobre</a></li>
+				<li><a class="dropdown-item" href="/Iflix/login.jsp">Login</a></li>
 
+			</ul>
+		</div>
 
-
-
+		<%
+		}
+		%>
 	</div>

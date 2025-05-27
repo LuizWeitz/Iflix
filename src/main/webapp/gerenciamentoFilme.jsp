@@ -107,7 +107,7 @@ Filme filme = (Filme) request.getAttribute("filme");
 								<div class="d-flex flex-wrap gap-3 mt-4">
 									<strong>Upload Imagem Capa</strong><br /> <input
 										class="form-control" type="file" id="capaFile" name="capaFile"
-										required>
+										>
 								</div>
 
 								<div class="d-flex justify-content-between mt-4">

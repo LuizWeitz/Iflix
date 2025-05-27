@@ -1,14 +1,17 @@
 package br.edu.ifsp.arq.iflix.model;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
     private int id;
     private String nome;
     private String dataNasc;
     private String email;
     private String senha;
     private String imgPerfil;
-
-    public Usuario() {}
 
     public Usuario(int id, String nome, String dataNasc, String email, String senha, String imgPerfil) {
         this.id = id;

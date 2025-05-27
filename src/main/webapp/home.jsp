@@ -175,9 +175,9 @@
 			<h2 class="fw-bold mb-4 text-center">Romance</h2>
 			<%
             try {
-                ArrayList<Filme> filmesAcao = filmeDAO.buscarPorGenero("Romance");
+                ArrayList<Filme> filmesRomance = filmeDAO.buscarPorGenero("Romance");
 
-                if (filmesAcao.isEmpty()) {
+                if (filmesRomance.isEmpty()) {
         %>
 			<p class="text-center">Nenhum filme de romance disponível no
 				momento.</p>
@@ -188,8 +188,8 @@
 				<button class="btn-nav btn-prev">&lt;</button>
 				<div class="carrossel">
 					<%
-                            for (int i = 0; i < filmesAcao.size(); i++) {
-                                Filme filme = filmesAcao.get(i);
+                            for (int i = 0; i < filmesRomance.size(); i++) {
+                                Filme filme = filmesRomance.get(i);
                         %>
                         
                         
@@ -225,9 +225,9 @@
 			<h2 class="fw-bold mb-4 text-center">Comédia</h2>
 			<%
             try {
-                ArrayList<Filme> filmesAcao = filmeDAO.buscarPorGenero("Comédia");
+                ArrayList<Filme> filmesComedia = filmeDAO.buscarPorGenero("Comédia");
 
-                if (filmesAcao.isEmpty()) {
+                if (filmesComedia.isEmpty()) {
         %>
 			<p class="text-center">Nenhum filme de comédia disponível no
 				momento.</p>
@@ -238,8 +238,8 @@
 				<button class="btn-nav btn-prev">&lt;</button>
 				<div class="carrossel">
 					<%
-                            for (int i = 0; i < filmesAcao.size(); i++) {
-                                Filme filme = filmesAcao.get(i);
+                            for (int i = 0; i < filmesComedia.size(); i++) {
+                                Filme filme = filmesComedia.get(i);
                         %>
 					<div class="filme-card">
 						<a href="editarFilme?id=<%= filme.getId() %>"> <img
@@ -271,9 +271,9 @@
 			<h2 class="fw-bold mb-4 text-center">Drama</h2>
 			<%
             try {
-                ArrayList<Filme> filmesAcao = filmeDAO.buscarPorGenero("Drama");
+                ArrayList<Filme> filmesDrama = filmeDAO.buscarPorGenero("Drama");
 
-                if (filmesAcao.isEmpty()) {
+                if (filmesDrama.isEmpty()) {
         %>
 			<p class="text-center">Nenhum filme de drama disponível no
 				momento.</p>
@@ -284,8 +284,8 @@
 				<button class="btn-nav btn-prev">&lt;</button>
 				<div class="carrossel">
 					<%
-                            for (int i = 0; i < filmesAcao.size(); i++) {
-                                Filme filme = filmesAcao.get(i);
+                            for (int i = 0; i < filmesDrama.size(); i++) {
+                                Filme filme = filmesDrama.get(i);
                         %>
 				<div class="filme-card">
 						<a href="editarFilme?id=<%= filme.getId() %>"> <img
@@ -303,7 +303,8 @@
                 }
             } catch (Exception e) {
         %>
-			<p class="text-center text-danger">Erro ao carregar c</p>
+			<p class="text-center text-danger">Erro ao carregar os filmes de
+				drama</p>
 			<%
             }
         %>

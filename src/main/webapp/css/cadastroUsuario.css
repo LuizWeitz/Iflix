@@ -1,0 +1,44 @@
+body{
+	background-color: #1F2326;
+}
+
+.card-custom {
+    background-color: #1F2326;
+    color: white;
+    border: 1px solid white;
+    border-radius: 1rem;
+    width: 450px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-logo {
+    width: 150px;
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+.footer-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* Para inputs com fundo escuro e texto branco */
+.form-control-custom {
+    background-color: #1F2326;
+    color: white;
+    border: 1px solid #fff;
+}
+
+/* Também para input file */
+.form-control-file-custom {
+    background-color: #1F2326;
+    color: white;
+    border: 1px solid #fff;
+    border-radius: 50px; /* arredondado tipo pill */
+}

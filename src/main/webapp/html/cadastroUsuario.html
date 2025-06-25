@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/iflix.svg">
-    <link href="../css/cadastroUsuario.css" rel="stylesheet">
+    <link href="../css/usuario.css" rel="stylesheet">
 </head>
 <body>
 
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-4 col-xl-5">
-                <div class="card card-custom bg-dark text-white mb-5" style="border-radius: 1rem;">
+              <div class="col-12 col-md-8 col-lg-4 col-xl-5">
+                <div class="card card-custom bg-dark text-white mb-5">
 
                     <div class="card-body p-4 text-center position-relative">
 
-                        <img src="../assets/iflix.svg" alt="Logo Iflix" class="card-logo">
+                        <a href="index.html"><img src="../assets/iflix.svg" alt="Logo Iflix" class="card-logo"></a>
 
                         <form action="cadastroUsuario" method="post" enctype="multipart/form-data">
 
@@ -59,7 +59,7 @@
                             <!-- Modal de Termos -->
                             <div class="modal fade" id="modalTermos" tabindex="-1" aria-labelledby="modalTermosLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content text-dark">
+                                    <div class="modal-content text-white bg-dark">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modalTermosLabel">Termos de Uso</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
@@ -82,7 +82,7 @@
                         </form>
 
                         <p class="mt-4 mb-0">
-                            Já tem uma conta? <a href="login.jsp" class="text-white-50">Entrar</a>
+                            Já tem uma conta? <a href="loginUsuario.html" class="text-white-50">Entrar</a>
                         </p>
 
                     </div>

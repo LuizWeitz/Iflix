@@ -1,0 +1,40 @@
+body{
+	background-color: #1F2326;
+}
+ 
+.carousel slide{
+	height: 50vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.navbar-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar-top .navbar-brand img {
+    height: 40px;
+}
+
+.navbar-top .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Footer */
+.footer-description {
+	color: white;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 0 auto;
+    margin: 0 auto;
+}
+

@@ -1,190 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<title>Iflix</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="icon" href="../assets/iflix.svg" type="image/png" />
-<link rel="stylesheet" href="../css/home.css" />
+  <meta charset="UTF-8" />
+  <title>Iflix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="icon" href="../assets/iflix.svg" type="image/png" />
+  <link rel="stylesheet" href="../css/home.css" />
 </head>
 <body>
 
-	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg fixed-top">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="home.html"> <img
-				src="../assets/iflix.svg" alt="Iflix Logo" />
-			</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">
+        <img src="../assets/iflix.svg" alt="Iflix Logo" />
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="filmes.html">Filmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="series.html">Séries</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="perfil.html">Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="index.html">Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-			<button class="navbar-toggler bg-light" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+  <!-- Banner -->
+  <div id="mainBannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../assets/primeiro.jpg" class="d-block w-100 banner-img" alt="Filme em Destaque">
+        <div class="banner-content">
+          <h1>Filme em Destaque</h1>
+          <p>Assista agora ao grande sucesso de bilheteria.</p>
+          <a href="#" class="btn btn-light btn-sm">▶ Assistir agora</a>
+          <a href="#" class="btn btn-secondary btn-sm">ℹ Mais informações</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/segundo.jpg" class="d-block w-100 banner-img" alt="Lançamento Imperdível">
+        <div class="banner-content">
+          <h1>Lançamento Imperdível</h1>
+          <p>Prepare-se para emoções intensas e reviravoltas.</p>
+          <a href="#" class="btn btn-light btn-sm">▶ Assistir agora</a>
+          <a href="#" class="btn btn-secondary btn-sm">ℹ Mais informações</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/terceiro.jpg" class="d-block w-100 banner-img" alt="Top 10 de Hoje">
+        <div class="banner-content">
+          <h1>Top 10 de Hoje</h1>
+          <p>Um dos filmes mais assistidos da semana. Não perca!</p>
+          <a href="#" class="btn btn-light btn-sm">▶ Assistir agora</a>
+          <a href="#" class="btn btn-secondary btn-sm">ℹ Mais informações</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-			<div class="collapse navbar-collapse justify-content-end"
-				id="navbarNav">
-				<ul class="navbar-nav align-items-center">
-					<li class="nav-item"><a class="nav-link" href="filmes.html">Filmes</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="series.html">Séries</a>
-					</li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="userDropdown"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="bi bi-person-circle"></i>
-					</a>
-						<ul class="dropdown-menu dropdown-menu-end custom-dropdown"
-							aria-labelledby="userDropdown">
-							<li><a class="dropdown-item" href="perfil.html">Perfil</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="index.html">Sair</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+  <!-- Carrossel Destaques -->
+  <div class="container-fluid mb-5">
+    <h4 class="section-title">Destaques</h4>
+    <div class="netflix-carousel position-relative">
+      <button class="scroll-btn left" onclick="scrollLeft('destaques')">&#10094;</button>
+      <div class="scroll-container" id="destaques">
+        <!-- Use imagens reais aqui -->
+        <!-- Exemplo: -->
+        <div class="movie-card"><img src="../assets/filmes/ricos.jpg" class="rounded w-100" alt="Ricos de Amor" /></div>
+        <div class="movie-card"><img src="../assets/filmes/ironMan.png" class="rounded w-100" alt="Homem de Ferro" /></div>
+        <div class="movie-card"><img src="../assets/filmes/minions.jpg" class="rounded w-100" alt="Minions" /></div>
+        <div class="movie-card"><img src="../assets/filmes/senhorDosAneis.jpg" class="rounded w-100" alt="Senhor dos Anéis" /></div>
+        <div class="movie-card"><img src="../assets/filmes/HarryPotter.jpg" class="rounded w-100" alt="Harry Potter" /></div>
+        <div class="movie-card"><img src="../assets/filmes/crepusculo.jpg" class="rounded w-100" alt="Crepúsculo" /></div>
+        <div class="movie-card"><img src="../assets/filmes/blindado.jpg" class="rounded w-100" alt="Blindado" /></div>
+        <div class="movie-card"><img src="../assets/filmes/rosario.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>
+        <div class="movie-card"><img src="../assets/filmes/Titanic.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>
+        <div class="movie-card"><img src="../assets/filmes/boneco.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>
+        <div class="movie-card"><img src="../assets/filmes/doutrinador.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>
+        <div class="movie-card"><img src="../assets/filmes/homi.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>
+        <div class="movie-card"><img src="../assets/filmes/lista.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>
+        <div class="movie-card"><img src="../assets/filmes/.jpg" class="rounded w-100" alt="Rosario Tijeras" /></div>        
+      </div>
+      <button class="scroll-btn right" onclick="scrollRight('destaques')">&#10095;</button>
+    </div>
+  </div>
 
-	<!-- Banner -->
-	<div id="mainBannerCarousel" class="carousel slide mb-5"
-		data-bs-ride="carousel" data-bs-interval="5000">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="../assets/primeiro.jpg" class="d-block w-100 banner-img"
-					alt="Destaque 1">
-				<div class="banner-content">
-					<h1>Filme em Destaque</h1>
-					<p>Assista agora ao grande sucesso de bilheteria.</p>
-					<a href="#" class="btn btn-light btn-sm">▶ Assistir agora</a> <a
-						href="#" class="btn btn-secondary btn-sm">ℹ Mais informações</a>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="../assets/segundo.jpg" class="d-block w-100 banner-img"
-					alt="Destaque 2">
-				<div class="banner-content">
-					<h1>Lançamento Imperdível</h1>
-					<p>Prepare-se para emoções intensas e reviravoltas.</p>
-					<a href="#" class="btn btn-light btn-sm">▶ Assistir agora</a> <a
-						href="#" class="btn btn-secondary btn-sm">ℹ Mais informações</a>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="../assets/terceiro.jpg" class="d-block w-100 banner-img"
-					alt="Destaque 3">
-				<div class="banner-content">
-					<h1>Top 10 de Hoje</h1>
-					<p>Um dos filmes mais assistidos da semana. Não perca!</p>
-					<a href="#" class="btn btn-light btn-sm">▶ Assistir agora</a> <a
-						href="#" class="btn btn-secondary btn-sm">ℹ Mais informações</a>
-				</div>
-			</div>
-		</div>
-	</div>
+  <!-- Carrossel Populares -->
+  <div class="container-fluid mb-5">
+    <h4 class="section-title">Populares</h4>
+    <div class="netflix-carousel position-relative">
+      <button class="scroll-btn left" onclick="scrollLeft('populares')">&#10094;</button>
+      <div class="scroll-container" id="populares">
+        <!-- Substitua por imagens reais -->
+        <div class="movie-card"><img src="../assets/series/black.jpg" class="rounded w-100" alt="Black Mirror" /></div>
+        <div class="movie-card"><img src="../assets/series/Dark.jpg" class="rounded w-100" alt="Dark" /></div>
+        <div class="movie-card"><img src="../assets/series/friends.jpg" class="rounded w-100" alt="Friends" /></div>
+        <div class="movie-card"><img src="../assets/series/greys.jpg" class="rounded w-100" alt="Grey's Anatomy" /></div>
+        <div class="movie-card"><img src="../assets/series/mestre.jpg" class="rounded w-100" alt="O Mestre do Kung Fu" /></div>
+        <div class="movie-card"><img src="../assets/series/Stranger.jpg" class="rounded w-100" alt="Stranger Things" /></div>
+        <div class="movie-card"><img src="../assets/series/theLast.jpg" class="rounded w-100" alt="The Last of Us" /></div>
+        <div class="movie-card"><img src="../assets/series/you.jpg" class="rounded w-100" alt="You" /></div>
+        <div class="movie-card"><img src="../assets/series/1899.jpg" class="rounded w-100" alt="You" /></div>
+        <div class="movie-card"><img src="../assets/series/bruxo.jpg" class="rounded w-100" alt="You" /></div>
+        <div class="movie-card"><img src="../assets/series/ems.jpg" class="rounded w-100" alt="You" /></div>
+        <div class="movie-card"><img src="../assets/series/seixas.jpg" class="rounded w-100" alt="You" /></div>
+        <div class="movie-card"><img src="../assets/series/sherlock.jpg" class="rounded w-100" alt="You" /></div>
+      </div>
+      <button class="scroll-btn right" onclick="scrollRight('populares')">&#10095;</button>
+    </div>
+  </div>
 
-	<!-- Carrossel Destaques -->
-	<div class="container-fluid mb-5">
-		<h4 class="section-title">Destaques</h4>
-		<div class="netflix-carousel position-relative">
-			<button class="scroll-btn left" onclick="scrollLeft('destaques')">&#10094;</button>
-			<div class="scroll-container" id="destaques">
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 1" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 2" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 3" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 4" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 5" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 6" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 7" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 8" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 9" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 10" />
-				</div>
-			</div>
-			<button class="scroll-btn right" onclick="scrollRight('destaques')">&#10095;</button>
-		</div>
-	</div>
+  <!-- Footer -->
+  <footer class="py-5 my-4">
+    <div class="mb-4 text-center">
+      <img src="../assets/iflix.svg" alt="Logo" class="footer-logo mb-3" />
+      <p class="footer-description">
+        <strong>Iflix</strong> é um trabalho de natureza acadêmica e tem fins exclusivamente educacionais.
+        As imagens, vídeos, trechos de filmes e textos utilizados pertencem aos seus respectivos criadores
+        e detentores de direitos autorais. Seu uso aqui se dá sob o princípio do uso justo (<em>fair use</em>),
+        com propósito de análise e comentário crítico.
+      </p>
+    </div>
+    <p class="text-center footer-description">© 2025 IFSP Campus Araraquara</p>
+  </footer>
 
-	<!-- Carrossel Populares -->
-	<div class="container-fluid mb-5">
-		<h4 class="section-title">Populares</h4>
-		<div class="netflix-carousel position-relative">
-			<button class="scroll-btn left" onclick="scrollLeft('populares')">&#10094;</button>
-			<div class="scroll-container" id="populares">
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 1" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 2" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 3" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 4" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 5" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 6" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 7" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 8" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 9" />
-				</div>
-				<div class="movie-card">
-					<img src="../assets/ricos.jpg" alt="Pop 10" />
-				</div>
-			</div>
-			<button class="scroll-btn right" onclick="scrollRight('populares')">&#10095;</button>
-		</div>
-	</div>
-
-	<!-- Footer -->
-	<footer class="py-5 my-4">
-		<div class="mb-4 text-center">
-			<img src="../assets/iflix.svg" alt="Logo" class="footer-logo mb-3" />
-			<p class="footer-description">
-				<strong>Iflix</strong> é um trabalho de natureza acadêmica e tem
-				fins exclusivamente educacionais. As imagens, vídeos, trechos de
-				filmes e textos utilizados pertencem aos seus respectivos criadores
-				e detentores de direitos autorais. Seu uso aqui se dá sob o
-				princípio do uso justo (<em>fair use</em>), com propósito de análise
-				e comentário crítico.
-			</p>
-		</div>
-		<p class="text-center footer-description">© 2025 IFSP Campus
-			Araraquara</p>
-	</footer>
-
-	<!-- Scripts -->
-	<script src="../js/carossel.js"></script>
+  <!-- Scripts -->
+  <script src="../js/carossel.js"></script>
 </body>
 </html>

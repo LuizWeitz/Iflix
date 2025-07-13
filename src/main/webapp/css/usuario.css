@@ -1,0 +1,43 @@
+body{
+	background-color: #1F2326;
+}
+
+.card-custom {
+    background-color: #1F2326;
+    color: white;
+    border: 0.5px solid #4a4a4a;
+    border-radius: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-logo {
+    width: 150px;
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+.footer-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.card .form-control {
+    background-color: #212529;   
+    color: white;
+    border: 0.5px solid #4a4a4a;   
+    border-radius: 0.25rem;
+}
+
+.card .form-control:focus {
+    background-color: #212529;
+    color: white;
+    border-color: white;
+    box-shadow: none;  
+}

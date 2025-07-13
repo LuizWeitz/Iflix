@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Iflix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <link rel="icon" type="image/png" href="../assets/iflix.svg" />
+    <link href="../css/home.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar-top">
+        <a class="navbar-brand" href="home.html">
+            <img src="../assets/iflix.svg" alt="Logo" />
+        </a>
+    </div>
+
+    <!-- Carrossel -->
+    <div id="carousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="../assets/primeiro.jpg" alt="Primeiro Slide" />
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/segundo.jpg" alt="Segundo Slide" />
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="../assets/terceiro.jpg" alt="Terceiro Slide" />
+            </div>
+        </div>
+    </div>
+
+ <!-- Carrossel dos cards -->
+	<div id="carouselCards1" class="carousel slide">
+	  <div class="carousel-inner">
+	    <!-- Slide 1 -->
+	    <div class="carousel-item active">
+	      <div class="container">
+	        <div class="row row-cols-1 row-cols-md-4 g-4">
+	          <div class="col">
+	            <img src="../assets/filmes/ricos.jpg" alt="Card 1" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/filmes/ironMan.png" alt="Card 2" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/filmes/minions.jpg" alt="Card 3" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/filmes/senhorDosAneis.jpg" alt="Card 4" class="rounded" style="width: 100%;" />
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	
+	    <div class="carousel-item">
+	      <div class="container">
+	        <div class="row row-cols-1 row-cols-md-4 g-4">
+	          <div class="col">
+	            <img src="../assets/filmes/HarryPotter.jpg" alt="Card 5" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/filmes/crepusculo.jpg" alt="Card 6" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/filmes/blindado.jpg" alt="Card 7" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/filmes/rosario.jpg" alt="Card 8" class="rounded" style="width: 100%;" />
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	
+	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCards1" data-bs-slide="prev">
+	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    <span class="visually-hidden">Anterior</span>
+	  </button>
+	  <button class="carousel-control-next" type="button" data-bs-target="#carouselCards1" data-bs-slide="next">
+	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    <span class="visually-hidden">Próximo</span>
+	  </button>
+	</div>
+	
+	<div class="my-4"></div>
+	
+	<div id="carouselCards2" class="carousel slide">
+	  <div class="carousel-inner">
+	    <!-- Slide 1 -->
+	    <div class="carousel-item active">
+	      <div class="container">
+	        <div class="row row-cols-1 row-cols-md-4 g-4">
+	          <div class="col">
+	            <img src="../assets/series/black.jpg" alt="Card 9" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/series/Dark.jpg" alt="Card 10" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/series/friends.jpg" alt="Card 11" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/series/greys.jpg" alt="Card 12" class="rounded" style="width: 100%;" />
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	
+	    <div class="carousel-item">
+	      <div class="container">
+	        <div class="row row-cols-1 row-cols-md-4 g-4">
+	          <div class="col">
+	            <img src="../assets/series/mestre.jpg" alt="Card 13" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/series/Stranger.jpg" alt="Card 14" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/series/theLast.jpg" alt="Card 15" class="rounded" style="width: 100%;" />
+	          </div>
+	          <div class="col">
+	            <img src="../assets/series/you.jpg" alt="Card 16" class="rounded" style="width: 100%;" />
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	
+	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCards2" data-bs-slide="prev">
+	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    <span class="visually-hidden">Anterior</span>
+	  </button>
+	  <button class="carousel-control-next" type="button" data-bs-target="#carouselCards2" data-bs-slide="next">
+	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    <span class="visually-hidden">Próximo</span>
+	  </button>
+	</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

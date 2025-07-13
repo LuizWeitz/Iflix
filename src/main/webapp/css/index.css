@@ -1,0 +1,53 @@
+body{
+	background-color: #1F2326;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('../assets/conjuntoFilmes.jpg') no-repeat center center/cover;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+    position: relative;
+}
+
+.hero-section .text-content {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.navbar-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar-top .navbar-brand img {
+    height: 40px;
+}
+
+.navbar-top .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Footer */
+.footer-description {
+	color: white;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 0 auto;
+    margin: 0 auto;
+}
+

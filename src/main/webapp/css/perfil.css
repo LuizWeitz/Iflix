@@ -1,0 +1,226 @@
+/* Paleta escura sem texto verde */
+:root {
+  --background: #141414;
+  --text-primary: #f0f0f0;
+  --text-secondary: #bbb;
+  --card-bg: #1e1e1e;
+  --btn-bg-hover: #28a745;
+  --btn-text-hover: #000;
+  --border-color: #444;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  position: relative;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  max-width: 480px;
+  width: 100%;
+  padding: 2rem 2.5rem 3rem 2.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+/* Botão voltar no topo esquerdo */
+.btn-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: color 0.3s;
+  user-select: none;
+}
+.btn-back:hover {
+  color: var(--btn-bg-hover);
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid #666;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+
+  /* Centralizar */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+.profile-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.profile-value {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+input {
+  background-color: #2a2a2a;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: var(--btn-bg-hover);
+  outline: none;
+  box-shadow: 0 0 8px var(--btn-bg-hover);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.btn {
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  user-select: none;
+  min-width: 110px;
+}
+
+.btn-outline-success {
+  background-color: transparent;
+  border: 2px solid var(--btn-bg-hover);
+  color: var(--btn-bg-hover);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--btn-bg-hover);
+  color: var(--btn-text-hover);
+  border-color: var(--btn-bg-hover);
+}
+
+.btn-secondary {
+  background-color: #444;
+  border: 2px solid #444;
+  color: #ccc;
+}
+
+.btn-secondary:hover {
+  background-color: #555;
+  border-color: #555;
+  color: #fff;
+}
+
+#profile-view, #profile-edit {
+  text-align: left;
+}
+
+#profile-view p {
+  margin-bottom: 1rem;
+}
+
+#profile-edit {
+  margin-top: 1.5rem;
+}
+
+#profile-edit .form-group {
+  margin-bottom: 1.4rem;
+}
+
+.form-control:disabled {
+  background-color: #2a2a2a;
+  color: var(--text-secondary);
+}
+
+.position-relative {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.toggle-password:hover {
+  color: var(--btn-bg-hover);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 576px) {
+  .card {
+    padding: 1.5rem 1.5rem;
+  }
+  .btn-group {
+    flex-direction: column;
+  }
+  .btn-group .btn {
+    width: 100%;
+    min-width: unset;
+  }
+  .btn-back {
+    top: 15px;
+    left: 15px;
+    font-size: 1.4rem;
+  }
+}

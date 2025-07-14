@@ -1,21 +1,23 @@
 package br.edu.ifsp.arq.iflix.controller;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
 
 import br.edu.ifsp.arq.iflix.dao.UsuarioDAO;
 import br.edu.ifsp.arq.iflix.model.Usuario;
+import br.edu.ifsp.arq.iflix.model.UsuarioTipo;
 
 /**
  * Servlet implementation class EditarUsuarioServlet
@@ -24,72 +26,83 @@ import br.edu.ifsp.arq.iflix.model.Usuario;
 @MultipartConfig
 public class EditarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private UsuarioDAO usuarioDAO;
 	public Usuario usuario;
-	
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EditarUsuarioServlet() {
-        super();
-        usuarioDAO = UsuarioDAO.getInstance();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 int id = Integer.parseInt(request.getParameter("id"));
-		 
-		 usuario = usuarioDAO.buscarPorId(id);
-		 
-		 request.setAttribute("usuario", usuario);
-		 
-		 RequestDispatcher dispatcher = request.getRequestDispatcher("gerenciamentoUsuario.jsp");
-		 
-	     dispatcher.forward(request, response);
-		
+	public EditarUsuarioServlet() {
+		super();
+		usuarioDAO = UsuarioDAO.getInstance();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	   
-		 request.setCharacterEncoding("UTF-8");
-		
-		Part filePart = request.getPart("imgPerfil");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		InputStream fileContent = filePart.getInputStream();
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int id = Integer.parseInt(request.getParameter("id"));
 
-		byte[] buffer = new byte[1024];
+		usuario = usuarioDAO.buscarPorId(id);
 
-		int bytesRead;
+		String json = new Gson().toJson(usuario);
 
-		while ((bytesRead = fileContent.read(buffer)) != -1) {
-			baos.write(buffer, 0, bytesRead);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+
+		// Leitura do corpo da req como texto
+		BufferedReader reader = request.getReader();
+
+		Gson gson = new Gson();
+
+		// Converte a req de json para a class usuario
+		Usuario editarUsuario = gson.fromJson(reader, Usuario.class);
+
+		List<Usuario> usuarios = (List<Usuario>) usuarioDAO.buscarTodos();
+
+		Map<String, String> mensagem = new HashMap<String, String>();
+
+		for (Usuario usuario : usuarios) {
+			if (usuario.getId() == editarUsuario.getId()) {
+				continue;
+			} else {
+				mensagem.put("resposta", "Usuário não encontrado");
+				return;
+			}
 		}
 
-		byte[] fileBytes = baos.toByteArray();
+		Usuario usuario = new Usuario(editarUsuario.getId(), editarUsuario.getNome(), editarUsuario.getDataNasc(),
+				editarUsuario.getEmail(), editarUsuario.getSenha(), editarUsuario.getImgPerfil(), UsuarioTipo.admin);
 
-		String base64String = Base64.getEncoder().encodeToString(fileBytes);
-		
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-	    String nome = request.getParameter("nome");
-	    String dataNasc = request.getParameter("dataNasc");
-	    String email = request.getParameter("email");
-	    String senha = request.getParameter("senha");
+		if (usuarioDAO.atualizar(usuario)) {
 
-	    Usuario usuario = new Usuario(id, nome, dataNasc, email, senha, base64String);
+			mensagem.put("resposta", "Usuário editado com sucesso");
 
-	    usuarioDAO.atualizar(usuario); 
-	    
-		response.sendRedirect("home.jsp");
+		} else {
+
+			mensagem.put("resposta", "Erro, o usuário não pode ser atualizado");
+		}
+
+		String respostaJson = gson.toJson(mensagem);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(respostaJson);
 	}
 
 }

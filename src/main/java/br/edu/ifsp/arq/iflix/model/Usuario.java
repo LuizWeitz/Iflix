@@ -12,14 +12,16 @@ public class Usuario implements Serializable {
     private String email;
     private String senha;
     private String imgPerfil;
+    private UsuarioTipo tipo;
 
-    public Usuario(int id, String nome, String dataNasc, String email, String senha, String imgPerfil) {
+    public Usuario(int id, String nome, String dataNasc, String email, String senha, String imgPerfil, UsuarioTipo tipo) {
         this.id = id;
         this.nome = nome;
         this.dataNasc = dataNasc;
         this.email = email;
         this.senha = senha;
         this.imgPerfil = imgPerfil;
+        this.tipo = tipo;
     }
     
     public int getId() {
@@ -69,4 +71,13 @@ public class Usuario implements Serializable {
     public void setImgPerfil(String imgPerfil) {
         this.imgPerfil = imgPerfil;
     }
+
+	public UsuarioTipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(UsuarioTipo tipo) {
+		this.tipo = tipo;
+	}
+    
 }

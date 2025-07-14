@@ -1,13 +1,16 @@
 package br.edu.ifsp.arq.iflix.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import br.edu.ifsp.arq.iflix.dao.UsuarioDAO;
 import br.edu.ifsp.arq.iflix.model.Usuario;
@@ -38,21 +41,33 @@ public class LoginUsuarioServelet extends HttpServlet {
 
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
+        
+        Map<String, String> mensagem = new HashMap<String, String>();
 
         for (Usuario usuario : usuarioDAO.buscarTodos()) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
-               
-                HttpSession session = request.getSession();
-                session.setAttribute("usuario", usuario);
-                
-                response.sendRedirect("home.jsp");
+           
+            	mensagem.put("resposta", "Usuário autenticado");
+            	
+        		String json = new Gson().toJson(mensagem);
+        		
+        		response.setContentType("application/json");
+        		response.setCharacterEncoding("UTF-8");
+        		response.getWriter().write(json);
+            	
                 return;
             } 
-        } 
+        }
         
-   
-       	 response.sendRedirect("erroLogin.jsp");
-    
-       
+    	mensagem.put("resposta", "Erro, ao autenticar usuário");	
+    	
+		String json = new Gson().toJson(mensagem);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+    	
+        return;
+        
     }
 }

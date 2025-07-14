@@ -1,10 +1,10 @@
 package br.edu.ifsp.arq.iflix.controller;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,11 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
 
 import br.edu.ifsp.arq.iflix.dao.UsuarioDAO;
 import br.edu.ifsp.arq.iflix.model.Usuario;
+import br.edu.ifsp.arq.iflix.model.UsuarioTipo;
 
 @WebServlet("/cadastroUsuario")
 @MultipartConfig
@@ -36,57 +37,48 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		 request.setCharacterEncoding("UTF-8");
+		
+		 // Leitura do corpo da req como texto
+	     BufferedReader reader = request.getReader();
+	     
+	     Gson gson = new Gson();
+	     
+	     // Converte a req de json para a class usuario
+	     Usuario novoUsuario = gson.fromJson(reader, Usuario.class);
 
-		List<Usuario> usuarios = (List<Usuario>) usuarioDAO.buscarTodos();
+		 List<Usuario> usuarios = (List<Usuario>) usuarioDAO.buscarTodos();
+		 
+		 Map<String, String> mensagem = new HashMap<String, String>();
 
 		for (Usuario usuario : usuarios) {
-			if (usuario.getEmail().equals(request.getParameter("email"))) {
+			if (usuario.getEmail().equals(novoUsuario.getEmail())) {
 
-				response.sendRedirect("usuarioEmailJaExiste.jsp");
+				mensagem.put("resposta", "Usuário com email já cadastrado");
 				return;
 			}
 		}
 
-		Part filePart = request.getPart("imgPerfil");
-
-		InputStream fileContent = filePart.getInputStream();
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-		byte[] buffer = new byte[1024];
-
-		int bytesRead;
-
-		while ((bytesRead = fileContent.read(buffer)) != -1) {
-			baos.write(buffer, 0, bytesRead);
-		}
-
-		byte[] fileBytes = baos.toByteArray();
-
-		String base64String = Base64.getEncoder().encodeToString(fileBytes);
-
 		int id = usuarioDAO.buscarTodos().size() > 0
-				? usuarioDAO.buscarTodos().get(usuarioDAO.buscarTodos().size() - 1).getId() + 1
-				: 1;
+			    ? usuarioDAO.buscarTodos().get(usuarioDAO.buscarTodos().size() - 1).getId() + 1
+			    : 1;  
 
-		String nome = request.getParameter("nome");
-		String dataNasc = request.getParameter("dataNascimento");
-		String email = request.getParameter("email");
-		String senha = request.getParameter("senha");
-
-		Usuario usuario = new Usuario(id, nome, dataNasc, email, senha, base64String);
+		Usuario usuario = new Usuario(id, novoUsuario.getNome(), 
+				novoUsuario.getDataNasc(), novoUsuario.getEmail(), novoUsuario.getSenha(), novoUsuario.getImgPerfil(), UsuarioTipo.admin);
 
 		if (usuarioDAO.adicionar(usuario)) {
 
-			HttpSession session = request.getSession();
-
-			session.setAttribute("usuario", usuario);
-
-			response.sendRedirect("home.jsp");
+			mensagem.put("resposta", "Usuário adicionado com sucesso");
 
 		} else {
 
-			response.sendRedirect("erroProcessarSolicitacao.jsp");
+			mensagem.put("resposta", "Erro, o usuário não pode ser adicionada");	
 		}
+		
+        String respostaJson = gson.toJson(mensagem);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(respostaJson);
 
 	}
 

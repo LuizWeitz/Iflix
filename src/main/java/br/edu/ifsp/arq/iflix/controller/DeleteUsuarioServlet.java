@@ -36,7 +36,7 @@ public class DeleteUsuarioServlet extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-        if (usuarioDAO.deletarPorID(id)) {
+        if (usuarioDAO.removerPorID(id)) {
         	
         	 HttpSession session = request.getSession();
     		 

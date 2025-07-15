@@ -1,0 +1,100 @@
+body {
+    background-color: #141414;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 60px;
+}
+
+.navbar {
+    background-color: rgba(20, 20, 20, 0.9);
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .nav-link i.bi-person-circle {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:hover i.bi-person-circle {
+    color: #28a745;
+}
+
+.card-custom {
+    background-color: #1F2326;
+    color: white;
+    border: 0.5px solid #4a4a4a;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 1000px;  
+    margin: 40px auto;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Inputs */
+.card-custom .form-control {
+    background-color: #212529;
+    color: white;
+    border: 0.5px solid #4a4a4a;
+    border-radius: 0.25rem;
+}
+
+.card-custom .form-control:focus {
+    background-color: #212529;
+    color: white;
+    border-color: white;
+    box-shadow: none;
+}
+
+/* Labels */
+.card-custom .form-label {
+    color: #ccc;
+    font-weight: 500;
+}
+
+.card-custom .btn-outline-success,
+.card-custom .btn-outline-secondary {
+    padding: 0.75rem 2.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+}
+
+.card-custom .btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.card-custom .btn-outline-secondary:hover {
+    background-color: #444;
+    color: white;
+    border-color: #444;
+}
+
+/* Footer */
+.footer-description {
+    color: white;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    height: 50px;
+}
+
+@media (max-width: 768px) {
+    .card-custom {
+        padding: 20px;
+        margin: 30px;
+    }
+}

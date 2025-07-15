@@ -1,25 +1,23 @@
 package br.edu.ifsp.arq.iflix.dao;
 
 import br.edu.ifsp.arq.iflix.model.Usuario;
-import br.edu.ifsp.arq.iflix.model.UsuarioTipo;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 
 public class UsuarioDAO {
 
-	private static UsuarioDAO instance;
+    private static UsuarioDAO instance;
+    private final String arquivoUsuarios = "src/main/webapp/data/usuarios.json";
 
-	private UsuarioDAO() {
-	}
+    private UsuarioDAO() {}
 
 	public static UsuarioDAO getInstance() {
 
@@ -30,7 +28,7 @@ public class UsuarioDAO {
 		return instance;
 	}
 	
-	private String filePathDataUsuarios = "/Users/luizweitz/Documents/data/usuarios.json";
+	private String filePathDataUsuarios = "data/usuarios.json";
 
 	private boolean salvarArquivo(ArrayList<Usuario> usuarios) {
 
@@ -38,20 +36,23 @@ public class UsuarioDAO {
 
 		try {
 
-			FileWriter fileWriter = new FileWriter(filePathDataUsuarios, StandardCharsets.UTF_8, false);
+			FileWriter fileWriter = new FileWriter("src/main/webapp/data/usuarios.json", StandardCharsets.UTF_8, true);
 
 			PrintWriter pw = new PrintWriter(fileWriter);
 
-			String json = gson.toJson(usuarios);
-			
-			pw.println(json);
+			for (Usuario usuario : usuarios) {
+
+				String json = gson.toJson(usuario);
+
+				pw.println(gson.toJson(json));
+			}
 
 			pw.close();
-			
+
 			fileWriter.close();
 
 			return true;
-		
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			return false;
@@ -61,67 +62,91 @@ public class UsuarioDAO {
 
 	public boolean adicionar(Usuario usuario) {
 
-		ArrayList<Usuario> usuarios = buscarTodos();
-		if (usuarios == null) {
-			usuarios = new ArrayList<>();
+		Gson gson = new Gson();
+
+		try {
+
+			FileWriter fileWriter = new FileWriter("src/main/webapp/data/usuarios.json", StandardCharsets.UTF_8, true);
+
+			PrintWriter pw = new PrintWriter(fileWriter);
+
+			String json = gson.toJson(usuario);
+
+			pw.println(json);
+
+			pw.close();
+
+			fileWriter.close();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			return false;
 		}
 
-		usuarios.add(usuario);
-		return salvarArquivo(usuarios);
+		return true;
 
 	}
 
 	public ArrayList<Usuario> buscarTodos() {
 
-		File file = new File(filePathDataUsuarios);
-		
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		
-		Gson gson = new Gson();
-		
-		 try {
-		        FileReader fileReader = new FileReader(file);
-		        usuarios = gson.fromJson(fileReader, new com.google.gson.reflect.TypeToken<ArrayList<Usuario>>(){}.getType());
-		        fileReader.close();
+		File file = new File("src/main/webapp/data/usuarios.json");
 
-		        if (usuarios == null) {
-		        	usuarios = new ArrayList<>();
-		        }
+		try {
 
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
+			Gson gson = new Gson();
 
-		    return usuarios;
+			FileReader fileReader;
 
-	
+			fileReader = new FileReader(file);
+
+			Scanner scanner = new Scanner(fileReader);
+
+			ArrayList<Usuario> lista;
+
+			lista = new ArrayList<Usuario>();
+
+			while (scanner.hasNextLine()) {
+
+				String linha = scanner.nextLine();
+
+				Usuario usuario = gson.fromJson(linha, Usuario.class);
+
+				lista.add(usuario);
+
+			}
+
+			scanner.close();
+
+			return lista;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public boolean removerPorID(int id) {
 		ArrayList<Usuario> usuarios = buscarTodos();
-		boolean removido = false;
-		
 
-		Iterator<Usuario> iterator = usuarios.iterator();
-		
-		while (iterator.hasNext()) {
-			Usuario usuario = iterator.next();
+		if (usuarios == null)
+			return false;
+
+		for (int i = 0; i < usuarios.size(); i++) {
+			Usuario usuario = usuarios.get(i);
+
 			if (usuario.getId() == id) {
-				iterator.remove();
-				removido = true;
+				usuarios.remove(i);
 				break;
 			}
 		}
-
-		if (removido) {
-			return salvarArquivo(usuarios);
-		}
-
-		return false;
+		
+		salvarArquivo(usuarios);
+		
+		return true;
 	}
 
 	public boolean atualizar(Usuario usuarioExistente) {
-
+		
 		ArrayList<Usuario> usuarios = buscarTodos();
 
 		if (usuarios == null)
@@ -135,9 +160,9 @@ public class UsuarioDAO {
 				break;
 			}
 		}
-
+		
 		salvarArquivo(usuarios);
-
+		
 		return false;
 	}
 
@@ -150,15 +175,6 @@ public class UsuarioDAO {
 		}
 		return null;
 
-	}
-	
-	public UsuarioTipo buscarTipoPorId(int id) {
-		for (Usuario usuario : buscarTodos()) {
-			if (usuario.getId() == id) {
-				return usuario.getTipo();
-			}
-		}
-		return null;
 	}
 
 }

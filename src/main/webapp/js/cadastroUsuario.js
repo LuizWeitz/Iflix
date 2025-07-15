@@ -1,4 +1,4 @@
-document.querySelector("form").addEventListener("submit", function (e) {
+document.querySelector("#formCadastro").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const nome = document.getElementById("nome").value.trim();
@@ -15,33 +15,37 @@ document.querySelector("form").addEventListener("submit", function (e) {
   const reader = new FileReader();
 
   reader.onload = function () {
+    const imgBase64 = reader.result;
+
     const novoUsuario = {
-      nome,
+      nome: nome,
       dataNasc: dataNascimento,
-      email,
-      senha,
-      imgPerfil: reader.result,  
-    
+      email: email,
+      senha: senha,
+      imgPerfil: imgBase64
     };
 
     fetch("cadastroUsuario", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json;charset=UTF-8" 
+        "Content-Type": "application/json;charset=UTF-8"
       },
       body: JSON.stringify(novoUsuario)
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao cadastrar.");
+        return response.json();
+      })
       .then(data => {
-        if (data.resposta === "Usuário adicionado com sucesso") {
-          alert("Cadastro realizado com sucesso!");
-          window.location.href = "home.html";
-        } else {
-          alert(data.resposta);
-        }
+        alert("Usuário cadastrado com sucesso!");
+
+        localStorage.setItem("USER_ID", data.id);
+        localStorage.setItem("USER_NOME", data.nome);
+
+        window.location.href = "login.html";
       })
       .catch(error => {
-        console.error("Erro no cadastro:", error);
+        console.error("Erro:", error);
         alert("Erro ao cadastrar usuário.");
       });
   };

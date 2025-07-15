@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	        const spanUser = document.getElementById("userNome");
 	        if (spanUser) {
 	            spanUser.textContent = `Olá, ${userNome}`;
-	        }
+	        } else {
+				
+			} spanUser.textContent = ``;
 	    }
 	
 });

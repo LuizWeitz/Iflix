@@ -3,9 +3,11 @@ package br.edu.ifsp.arq.iflix.dao;
 import br.edu.ifsp.arq.iflix.model.Usuario;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +17,6 @@ import com.google.gson.Gson;
 public class UsuarioDAO {
 
     private static UsuarioDAO instance;
-    private final String arquivoUsuarios = "src/main/webapp/data/usuarios.json";
 
     private UsuarioDAO() {}
 
@@ -36,7 +37,7 @@ public class UsuarioDAO {
 
 		try {
 
-			FileWriter fileWriter = new FileWriter("src/main/webapp/data/usuarios.json", StandardCharsets.UTF_8, true);
+			FileWriter fileWriter = new FileWriter(filePathDataUsuarios, StandardCharsets.UTF_8, true);
 
 			PrintWriter pw = new PrintWriter(fileWriter);
 
@@ -62,34 +63,21 @@ public class UsuarioDAO {
 
 	public boolean adicionar(Usuario usuario) {
 
-		Gson gson = new Gson();
-
-		try {
-
-			FileWriter fileWriter = new FileWriter("src/main/webapp/data/usuarios.json", StandardCharsets.UTF_8, true);
-
-			PrintWriter pw = new PrintWriter(fileWriter);
-
-			String json = gson.toJson(usuario);
-
-			pw.println(json);
-
-			pw.close();
-
-			fileWriter.close();
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			return false;
+		ArrayList<Usuario> usuarios = buscarTodos();
+		
+		if (usuarios == null) {
+			usuarios = new ArrayList<>();
 		}
 
-		return true;
+		usuarios.add(usuario);
+		
+		return salvarArquivo(usuarios);
 
 	}
 
 	public ArrayList<Usuario> buscarTodos() {
 
-		File file = new File("src/main/webapp/data/usuarios.json");
+		File file = new File(filePathDataUsuarios);
 
 		try {
 

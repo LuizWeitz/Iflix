@@ -37,15 +37,16 @@ public class LoginUsuarioServelet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		
-		 request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		
+    	response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         
         Map<String, String> mensagem = new HashMap<String, String>();
         
-
-
         for (Usuario usuario : usuarioDAO.buscarTodos()) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
             	
@@ -55,8 +56,7 @@ public class LoginUsuarioServelet extends HttpServlet {
 
         		String json = new Gson().toJson(mensagem);
         		
-        		response.setContentType("application/json");
-        		response.setCharacterEncoding("UTF-8");
+        	
         		response.getWriter().write(json);
             	
                 return;
@@ -65,11 +65,8 @@ public class LoginUsuarioServelet extends HttpServlet {
         
     	mensagem.put("resposta", "Erro ao autenticar usuário");	
     	
-    	
 		String json = new Gson().toJson(mensagem);
 		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);
     	
         return;

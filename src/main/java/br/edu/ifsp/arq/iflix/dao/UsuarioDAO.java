@@ -1,6 +1,7 @@
 package br.edu.ifsp.arq.iflix.dao;
 
 import br.edu.ifsp.arq.iflix.model.Usuario;
+import br.edu.ifsp.arq.iflix.model.UsuarioTipo;
 
 import java.io.File;
 import java.io.FileReader;
@@ -29,7 +30,7 @@ public class UsuarioDAO {
 		return instance;
 	}
 	
-	private String filePathDataUsuarios = "data/usuarios.json";
+	private String filePathDataUsuarios = "/Users/luizweitz/Documents/data/usuarios.json";
 
 	private boolean salvarArquivo(ArrayList<Usuario> usuarios) {
 
@@ -149,6 +150,15 @@ public class UsuarioDAO {
 		}
 		return null;
 
+	}
+	
+	public UsuarioTipo buscarTipoPorId(int id) {
+		for (Usuario usuario : buscarTodos()) {
+			if (usuario.getId() == id) {
+				return usuario.getTipo();
+			}
+		}
+		return null;
 	}
 
 }

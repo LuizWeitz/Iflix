@@ -22,42 +22,45 @@ import br.edu.ifsp.arq.iflix.model.Filme;
 public class BuscarFilmePorIdServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FilmeDAO filmeDAO;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BuscarFilmePorIdServelet() {
-        super();
-        filmeDAO = FilmeDAO.getInstance();
-       
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-int id = Integer.parseInt(request.getParameter("id"));
-		
+	public BuscarFilmePorIdServelet() {
+		super();
+		filmeDAO = FilmeDAO.getInstance();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+
 		Filme filme = filmeDAO.buscarPorId(id);
-		
-		if (filme == null) {
-			
-			Map<String, String> mensagem = new HashMap<>();
-			
-			mensagem.put("resposta", "Filme não encontrado");
-			
-			String resposta = new Gson().toJson(mensagem);
-			
-			response.getWriter().write(resposta);
-			
-			return;
-		}
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
+
+		if (filme == null) {
+
+			Map<String, String> mensagem = new HashMap<>();
+
+			mensagem.put("resposta", "Filme não encontrado");
+
+			String resposta = new Gson().toJson(mensagem);
+
+			response.getWriter().write(resposta);
+			
+			response.setStatus(404);
+
+			return;
+		}
+
 		response.getWriter().write(new Gson().toJson(filme));
 	}
 
-	
 }

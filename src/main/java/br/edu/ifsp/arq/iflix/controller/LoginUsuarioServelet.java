@@ -43,12 +43,16 @@ public class LoginUsuarioServelet extends HttpServlet {
         String senha = request.getParameter("senha");
         
         Map<String, String> mensagem = new HashMap<String, String>();
+        
+
 
         for (Usuario usuario : usuarioDAO.buscarTodos()) {
             if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
-           
-            	mensagem.put("resposta", "Usuário autenticado");
             	
+            	mensagem.put("resposta", "Usuário autenticado");
+            	mensagem.put("user_id", Integer.toString(usuario.getId())); 
+            	mensagem.put("user_nome", usuario.getNome()); 
+
         		String json = new Gson().toJson(mensagem);
         		
         		response.setContentType("application/json");
@@ -60,6 +64,7 @@ public class LoginUsuarioServelet extends HttpServlet {
         }
         
     	mensagem.put("resposta", "Erro ao autenticar usuário");	
+    	
     	
 		String json = new Gson().toJson(mensagem);
 		

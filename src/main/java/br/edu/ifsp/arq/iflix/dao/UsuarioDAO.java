@@ -29,7 +29,7 @@ public class UsuarioDAO {
 		return instance;
 	}
 	
-	private String filePathDataUsuarios = "/Users/luizweitz/Documents/data/usuarios.json";
+	private String filePathDataUsuarios = "data/usuarios.json";
 
 	private boolean salvarArquivo(ArrayList<Usuario> usuarios) {
 

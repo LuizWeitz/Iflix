@@ -28,7 +28,7 @@ public class FilmeDAO {
 		return instance;
 	}
 
-	private String filePathDataFilmes = "/Users/luizweitz/Documents/data/filmes.json";
+	private String filePathDataFilmes = "data/filmes.json";
 
 	private boolean salvarArquivo(ArrayList<Filme> filmes) {
 		

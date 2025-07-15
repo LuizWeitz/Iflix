@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     viewDataNasc.textContent = user.dataNasc ? new Date(user.dataNasc).toLocaleDateString('pt-BR') : "";
     viewEmail.textContent = user.email || "";
 
-    // Preenche os inputs do formulário
     inputNome.value = user.nome || "";
     inputDataNasc.value = user.dataNasc || "";
     inputEmail.value = user.email || "";

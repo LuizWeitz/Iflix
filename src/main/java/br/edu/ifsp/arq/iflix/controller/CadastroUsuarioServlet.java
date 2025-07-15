@@ -20,7 +20,7 @@ import br.edu.ifsp.arq.iflix.model.Usuario;
 import br.edu.ifsp.arq.iflix.model.UsuarioTipo;
 
 @WebServlet("/cadastroUsuario")
-@MultipartConfig
+
 public class CadastroUsuarioServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -37,26 +37,36 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		 request.setCharacterEncoding("UTF-8");
-		
-		 // Leitura do corpo da req como texto
-	     BufferedReader reader = request.getReader();
-	     
-	     Gson gson = new Gson();
-	     
-	     // Converte a req de json para a class usuario
-	     Usuario novoUsuario = gson.fromJson(reader, Usuario.class);
+
+		 BufferedReader reader = request.getReader();
+		 StringBuilder jsonBuilder = new StringBuilder();
+		 String linha;
+		 while ((linha = reader.readLine()) != null) {
+		     jsonBuilder.append(linha);
+		 }
+
+		 String jsonRecebido = jsonBuilder.toString();
+
+		 Gson gson = new Gson();
+		 Usuario novoUsuario = gson.fromJson(jsonRecebido, Usuario.class);
+
 
 		 List<Usuario> usuarios = (List<Usuario>) usuarioDAO.buscarTodos();
 		 
 		 Map<String, String> mensagem = new HashMap<String, String>();
 
-		for (Usuario usuario : usuarios) {
-			if (usuario.getEmail().equals(novoUsuario.getEmail())) {
-
-				mensagem.put("resposta", "Usuário com email já cadastrado");
-				return;
+		 for (Usuario usuario : usuarios) {
+			    if (usuario.getEmail().equals(novoUsuario.getEmail())) {
+			        mensagem.put("resposta", "Usuário com email já cadastrado");
+			        String respostaJson = gson.toJson(mensagem);
+			        response.setContentType("application/json");
+			        response.setCharacterEncoding("UTF-8");
+			        response.getWriter().write(respostaJson);
+			        return; 
+			    }
 			}
-		}
+
+		
 
 		int id = usuarioDAO.buscarTodos().size() > 0
 			    ? usuarioDAO.buscarTodos().get(usuarioDAO.buscarTodos().size() - 1).getId() + 1

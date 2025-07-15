@@ -59,7 +59,7 @@ public class LoginUsuarioServelet extends HttpServlet {
             } 
         }
         
-    	mensagem.put("resposta", "Erro, ao autenticar usuário");	
+    	mensagem.put("resposta", "Erro ao autenticar usuário");	
     	
 		String json = new Gson().toJson(mensagem);
 		

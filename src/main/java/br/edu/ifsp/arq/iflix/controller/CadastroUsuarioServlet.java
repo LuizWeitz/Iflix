@@ -73,7 +73,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			    : 1;  
 
 		Usuario usuario = new Usuario(id, novoUsuario.getNome(), 
-				novoUsuario.getDataNasc(), novoUsuario.getEmail(), novoUsuario.getSenha(), novoUsuario.getImgPerfil(), UsuarioTipo.admin);
+				novoUsuario.getDataNasc(), novoUsuario.getEmail(), novoUsuario.getSenha(), novoUsuario.getImgPerfil(), UsuarioTipo.ADMIN);
 
 		if (usuarioDAO.adicionar(usuario)) {
 
@@ -81,7 +81,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 		} else {
 
-			mensagem.put("resposta", "Erro, o usuário não pode ser adicionada");	
+			mensagem.put("resposta", "Erro ao adicionar usuário");	
 		}
 		
         String respostaJson = gson.toJson(mensagem);

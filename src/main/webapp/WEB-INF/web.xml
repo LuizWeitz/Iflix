@@ -58,6 +58,12 @@
 		<description></description>
 		<servlet-class>br.edu.ifsp.arq.iflix.controller.BuscarRoleUsuarioPorIdServelet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>BuscarTodasCategoriasServelet</servlet-name>
+		<display-name>BuscarTodasCategoriasServelet</display-name>
+		<description></description>
+		<servlet-class>br.edu.ifsp.arq.iflix.controller.BuscarTodasCategoriasServelet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>EditarUsuario</servlet-name>
 		<url-pattern>/EditarUsuario</url-pattern>
@@ -93,6 +99,10 @@
 	<servlet-mapping>
 		<servlet-name>BuscarRoleUsuarioPorIdServelet</servlet-name>
 		<url-pattern>/BuscarRoleUsuarioPorIdServelet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BuscarTodasCategoriasServelet</servlet-name>
+		<url-pattern>/BuscarTodasCategoriasServelet</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

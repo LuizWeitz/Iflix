@@ -64,7 +64,15 @@ public class EditarUsuarioServlet extends HttpServlet {
 			if (usuario.getId() == editarUsuario.getId()) {
 				continue;
 			} else {
+				
 				mensagem.put("resposta", "Usuário não encontrado");
+
+				String resposta = new Gson().toJson(mensagem);
+
+				response.getWriter().write(resposta);
+				
+				response.setStatus(404);
+			
 				return;
 			}
 		}

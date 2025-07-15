@@ -18,7 +18,7 @@ import br.edu.ifsp.arq.iflix.model.Usuario;
 /**
  * Servlet implementation class BuscarUsuarioPorIdServelet
  */
-@WebServlet("/BuscarUsuarioPorIdServelet")
+@WebServlet("/buscarUsuarioPorIdServelet")
 public class BuscarUsuarioPorIdServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

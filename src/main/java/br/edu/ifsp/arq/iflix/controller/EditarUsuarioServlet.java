@@ -38,23 +38,6 @@ public class EditarUsuarioServlet extends HttpServlet {
 		usuarioDAO = UsuarioDAO.getInstance();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		int id = Integer.parseInt(request.getParameter("id"));
-
-		usuario = usuarioDAO.buscarPorId(id);
-
-		String json = new Gson().toJson(usuario);
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(json);
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -87,7 +70,7 @@ public class EditarUsuarioServlet extends HttpServlet {
 		}
 
 		Usuario usuario = new Usuario(editarUsuario.getId(), editarUsuario.getNome(), editarUsuario.getDataNasc(),
-				editarUsuario.getEmail(), editarUsuario.getSenha(), editarUsuario.getImgPerfil(), UsuarioTipo.admin);
+				editarUsuario.getEmail(), editarUsuario.getSenha(), editarUsuario.getImgPerfil(), UsuarioTipo.ADMIN);
 
 		if (usuarioDAO.atualizar(usuario)) {
 

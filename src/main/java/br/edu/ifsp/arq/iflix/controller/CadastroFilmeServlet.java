@@ -1,73 +1,82 @@
 package br.edu.ifsp.arq.iflix.controller;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Base64;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
 
 import br.edu.ifsp.arq.iflix.dao.FilmeDAO;
 import br.edu.ifsp.arq.iflix.model.Filme;
 
 @WebServlet("/cadastroFilme")
-@MultipartConfig
 public class CadastroFilmeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
 	private FilmeDAO filmeDAO;
 
 	public CadastroFilmeServlet() {
 		super();
-
 		filmeDAO = FilmeDAO.getInstance();
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
 		
-	    request.setCharacterEncoding("UTF-8");
+		BufferedReader reader = request.getReader();
+		
+		Gson gson = new Gson();
 
-		Part filePart = request.getPart("capaFile");
+		Filme novoFilme = gson.fromJson(reader, Filme.class);
 
-		InputStream fileContent = filePart.getInputStream();
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-		byte[] buffer = new byte[1024];
-
-		int bytesRead;
-
-		while ((bytesRead = fileContent.read(buffer)) != -1) {
-			baos.write(buffer, 0, bytesRead);
-		}
-
-		byte[] fileBytes = baos.toByteArray();
-
-		String base64String = Base64.getEncoder().encodeToString(fileBytes);
-
-		int id = filmeDAO.buscarTodos().size() > 0
-				? filmeDAO.buscarTodos().get(filmeDAO.buscarTodos().size() - 1).getId() + 1
+		List<Filme> filmes = filmeDAO.buscarTodos();
+		
+		int id = filmes.size() > 0
+				? filmes.get(filmes.size() - 1).getId() + 1
 				: 1;
 
-		Filme filme = new Filme(id, request.getParameter("titulo"), request.getParameter("genero"), request.getParameter("diretor"),
-				request.getParameter("anoLancamento"), request.getParameter("sinopse"), request.getParameter("idioma"),
-				request.getParameter("formato"), request.getParameter("duracao"),
-				request.getParameter("linkTrailer"), base64String);
+
+		Filme filme = new Filme(
+			id,
+			novoFilme.getTitulo(),
+			novoFilme.getGenero(),
+			novoFilme.getDiretor(),
+			novoFilme.getAnoLancamento(),
+			novoFilme.getSinopse(),
+			novoFilme.getIdioma(),
+			novoFilme.getFormato(),
+			novoFilme.getDuracao(),
+			novoFilme.getLinkTrailer(),
+			novoFilme.getImgCapa() 
+		);
+
+		Map<String, String> mensagem = new HashMap<>();
 
 		if (filmeDAO.adicionar(filme)) {
-			response.sendRedirect("home.jsp");
+			
+			mensagem.put("resposta", "Filme cadastrado com sucesso");
+			
 		} else {
-			response.sendRedirect("erroProcessarSolicitacao.jsp");
+			
+			mensagem.put("resposta", "Erro ao cadastrar filme");
 		}
 
+		
+        String respostaJson = gson.toJson(mensagem);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(respostaJson);
 	}
 }

@@ -5,12 +5,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.edu.ifsp.arq.iflix.dao.UsuarioDAO;
-import br.edu.ifsp.arq.iflix.model.Usuario;
 
 @WebServlet("/deleteUsuario")
 public class DeleteUsuarioServlet extends HttpServlet {
@@ -18,7 +20,6 @@ public class DeleteUsuarioServlet extends HttpServlet {
     
 	
 	private UsuarioDAO usuarioDAO;
-	public Usuario usuario;
 
 	 /**
      * @see HttpServlet#HttpServlet()
@@ -29,24 +30,26 @@ public class DeleteUsuarioServlet extends HttpServlet {
     }
 
 	
-	
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		
+		Map<String, String> mensagem = new HashMap<>();
 
-        if (usuarioDAO.removerPorID(id)) {
-        	
-        	 HttpSession session = request.getSession();
-    		 
-    		 session.invalidate();
-     
-             response.sendRedirect("index.jsp");
-             
-        } else {
-        	
-            response.sendRedirect("erroProcessarSolicitacao.jsp");
-        }
+		if (usuarioDAO.removerPorID(id)) {
+			
+			mensagem.put("resposta", "Usuário removido com sucesso");
+			
+		} else {
+			
+			mensagem.put("resposta", "Erro ao remover usuário");
+			
+		}
+		
+		Gson gson = new Gson();
+
+		response.getWriter().write(gson.toJson(mensagem));
     }
 }

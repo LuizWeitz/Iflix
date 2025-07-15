@@ -8,7 +8,7 @@ public class Filme implements Serializable{
 	
 	private int id;
 	private String titulo;
-	private String genero;
+	private FilmeGenero genero;
 	private String diretor;
 	private String anoLancamento;
 	private String sinopse;
@@ -18,7 +18,7 @@ public class Filme implements Serializable{
 	private String linkTrailer;
 	private String imgCapa;
 	
-	public Filme(int id, String titulo, String genero, String diretor, String anoLancamento, String sinopse, String idioma,
+	public Filme(int id, String titulo, FilmeGenero genero, String diretor, String anoLancamento, String sinopse, String idioma,
 			String formato, String duracao, String linkTrailer, String imgCapa) {
 		super();
 		this.id = id;
@@ -49,12 +49,12 @@ public class Filme implements Serializable{
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
-	public String getGenero() {
+	
+	public FilmeGenero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(FilmeGenero genero) {
 		this.genero = genero;
 	}
 
